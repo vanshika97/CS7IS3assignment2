@@ -1,6 +1,7 @@
 package ie.tcd.cs7is3;
 
 import ie.tcd.cs7is3.documents.FederalRegister;
+import ie.tcd.cs7is3.documents.FinancialTimes;
 import ie.tcd.cs7is3.documents.ForeignBroadcastInformationService;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -24,6 +25,7 @@ public class IndexDocuments {
     private final static String absPathToIndex = String.format("%s/News_Index", currentRelativePath);
     private final static String absPathToFedRegister = String.format("%s/Collection/fr94",currentRelativePath);
     private final static String absPathToForBroadcast = String.format("%s/Collection/fbis",currentRelativePath);
+    private final static String absPathToFinTimes = String.format("%s/Collection/ft",currentRelativePath);
     //... add the other paths
 
     public static void buildDocsIndex(Similarity similarity, Analyzer analyzer) throws IOException {
@@ -37,6 +39,7 @@ public class IndexDocuments {
 
         List<Document> fedRegisterDocs = FederalRegister.loadFedRegisterDocs(absPathToFedRegister);
         List<Document> forBroadcastDocs = ForeignBroadcastInformationService.loadForBroadcastDocs(absPathToForBroadcast);
+        List<Document> finTimesDocs = FinancialTimes.loadFinTimesDocs(absPathToForBroadcast);
 
         try {
             indexWriter = new IndexWriter(directory, indexWriterConfig);
@@ -48,6 +51,9 @@ public class IndexDocuments {
 
             System.out.println("Indexing Foreign Broadcast Information Service Document Collection");
             indexWriter.addDocuments(forBroadcastDocs);
+            
+            System.out.println("Indexing Financial Times Document Collection");
+            indexWriter.addDocuments(finTimesDocs);
 
             //... create same classes for other docs in documents package
 
