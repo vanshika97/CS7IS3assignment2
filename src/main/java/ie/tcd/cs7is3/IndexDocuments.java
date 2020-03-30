@@ -29,32 +29,43 @@ public class IndexDocuments {
     //... add the other paths
 
     public static void buildDocsIndex(Similarity similarity, Analyzer analyzer) throws IOException {
-
+//        System.out.println(currentRelativePath);
         IndexWriter indexWriter;
         IndexWriterConfig indexWriterConfig  = new IndexWriterConfig(analyzer);
         indexWriterConfig
                 .setSimilarity(similarity)
-                .setOpenMode(IndexWriterConfig.OpenMode.CREATE);
+                .setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND).setRAMBufferSizeMB(1024);
         Directory directory = FSDirectory.open(Paths.get(absPathToIndex));
 
         List<Document> fedRegisterDocs = FederalRegister.loadFedRegisterDocs(absPathToFedRegister);
         List<Document> forBroadcastDocs = ForeignBroadcastInformationService.loadForBroadcastDocs(absPathToForBroadcast);
-        List<Document> finTimesDocs = FinancialTimes.loadFinTimesDocs(absPathToForBroadcast);
+        List<Document> finTimesDocs = FinancialTimes.loadFinTimesDocs(absPathToFinTimes);
 
         try {
             indexWriter = new IndexWriter(directory, indexWriterConfig);
             indexWriter.deleteAll();
 
 
-            System.out.println("Indexing Federal Register Document Collection");
-            indexWriter.addDocuments(fedRegisterDocs);
-
-            System.out.println("Indexing Foreign Broadcast Information Service Document Collection");
-            indexWriter.addDocuments(forBroadcastDocs);
-            
-            System.out.println("Indexing Financial Times Document Collection");
-            indexWriter.addDocuments(finTimesDocs);
-
+            System.out.print("Indexing Federal Register Document Collection ");
+            for (Document doc : fedRegisterDocs) {
+            	indexWriter.addDocument(doc);
+            }
+            System.out.println("...Done");
+            System.out.print("Indexing Foreign Broadcast Information Service Document Collection ");
+            for (Document doc : forBroadcastDocs) {
+            	indexWriter.addDocument(doc);
+            }
+//            indexWriter.addDocuments(forBroadcastDocs);
+            System.out.println("...Done");
+            System.out.print("Indexing Financial Times Document Collection ");
+            for (Document doc : finTimesDocs) {
+            	indexWriter.addDocument(doc);
+//            	indexWriter.optimize();
+//            	indexWriter.commit();
+//            	indexWriter.close(); 
+            }
+//            indexWriter.addDocuments(finTimesDocs);
+            System.out.println("...Done");
             //... create same classes for other docs in documents package
 
             indexWriter.close();
