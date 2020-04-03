@@ -54,7 +54,7 @@ public class Main {
         File search_results = new File("src/search_results.txt");
         if(search_results.exists()){
             System.out.println("Deleting Search Results");
-            search_results.deleteOnExit();
+            search_results.delete();
         }
 
         File tops = new File("src/topic/tops.json");
