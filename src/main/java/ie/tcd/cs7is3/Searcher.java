@@ -33,12 +33,6 @@ public class Searcher {
             "usdept", "agency", "usbureau", "doctitle", "summary", "supplem", "other",
             "ht", "au", "f",
             "paragraph"};
-
-    /**
-     * Create query from topic
-     * @param top the topic JSON to create query from
-     * @return the query string created from the topic JSON
-     */
     private static String createQuery(JSONObject top) {
 
         // Concatenate the four elements
@@ -59,11 +53,6 @@ public class Searcher {
         File finalQueriesDir = new File("src/final_queries/");
         if (!finalQueriesDir.exists())
             finalQueriesDir.mkdir();
-
-        // Delete previous final queries files
-        System.out.println("Deleting previous final queries files, if they exist...");
-
-        System.out.println("Done!\n");
 
         List<String> resFileContent = new ArrayList<String>();
         List<String> queryFileContent = new ArrayList<String>();
@@ -127,7 +116,7 @@ public class Searcher {
         System.out.print("Writing queries to file...");
         Files.write(Paths.get("src/final_queries/queries.txt"), queryFileContent, Charset.forName("UTF-8"),
                 StandardOpenOption.CREATE_NEW);
-        System.out.println(" src/search_results.txt to be used in TREC Eval.");
+        System.out.println(" src/queries.txt to be used in TREC Eval.");
 
         System.out.print("Writing results to file...");
         Files.write(Paths.get("src/search_results.txt"), resFileContent, Charset.forName("UTF-8"),
