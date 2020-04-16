@@ -8,16 +8,21 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
@@ -68,7 +73,7 @@ public class Searcher {
         List<String> resFileContent = new ArrayList<String>();
         List<String> queryFileContent = new ArrayList<String>();
 
-        String[] elements = allElements;
+        String[] elements = {"docnoo", "headline", "text"};
 
         // Check if all paths are valid and exist
         String ftIndexDirStr = indexDirStr;
@@ -98,6 +103,11 @@ public class Searcher {
         System.out.print("Searching index using "+analyzer.getClass().getSimpleName()+" and " +
         similarity.getClass().getSimpleName() +", with " + Integer.toString(HITS_PER_PAGE) + " hits per page..");
         // Loop through all queries and retrieve documents
+        
+        Map<String, Float> boost = new HashMap<>();
+        boost.put("headline", (float) 0.1);
+        boost.put("text", (float) 0.9);
+
         for (Object obj : tops) {
 
             JSONObject top = (JSONObject) obj;
@@ -106,8 +116,11 @@ public class Searcher {
             queryFileContent.add(queryStr);
 
             queryStr = queryStr.replace("/", "\\/");
-            MultiFieldQueryParser queryParser = new MultiFieldQueryParser(elements, analyzer);
+            MultiFieldQueryParser queryParser = new MultiFieldQueryParser(elements, analyzer, boost);
+            queryParser.setAllowLeadingWildcard(true);
             Query query = queryParser.parse(queryStr);
+            BooleanQuery.Builder bq = new BooleanQuery.Builder();
+            bq.add(query, Occur.SHOULD);
 
             // Search
             TopDocs topDocs = isearcher.search(query, HITS_PER_PAGE);
@@ -119,7 +132,7 @@ public class Searcher {
                 int docId = hits[j].doc;
                 Document doc = isearcher.doc(docId);
                 resFileContent.add(
-                        (String) top.get("num") + " 0 " + doc.get("docnoo").toUpperCase() + " 0 " + hits[j].score + " STANDARD");
+                        (String) top.get("num") + " 0 " + doc.get("docnoo") + " 0 " + hits[j].score + " STANDARD");
             }
         }
         System.out.println(".done!\n");
