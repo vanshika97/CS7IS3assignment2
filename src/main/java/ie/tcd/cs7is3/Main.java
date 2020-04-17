@@ -21,7 +21,7 @@ public class Main {
         Similarity bm25Similairty= new BM25Similarity();
         Similarity booleanSimilarity = new BooleanSimilarity();
         Similarity tfidfSimilarity = new ClassicSimilarity();
-        Similarity multiSimilarity =  new MultiSimilarity(new Similarity[] {tfidfSimilarity, bm25Similairty});
+        Similarity multiSimilarity =  new MultiSimilarity(new Similarity[] {tfidfSimilarity, bm25Similairty, booleanSimilarity});
         
 
         //Different Analyzers to Test
