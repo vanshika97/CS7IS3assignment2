@@ -31,7 +31,7 @@ $ Instance IP Address: ec2-54-165-243-242.compute-1.amazonaws.com
 **To enter the system**
 
 ```sh
-$ ssh cs7is3ec2-54-165-243-242.compute-1.amazonaws.com
+$ ssh cs7is3@ec2-54-165-243-242.compute-1.amazonaws.com
 Enter password: cs7is3
 ```
 ### Building the code
