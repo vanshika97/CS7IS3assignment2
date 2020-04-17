@@ -15,12 +15,11 @@ Ran following similarities with CustomAnalyzer
 - bm25Similarity   
 - multiSimilarity
 
-
 ## Getting Started
 
 - Run the following commands on ubuntu terminal or an windows via cmd as adminstrator
 
-**To enter the system**
+#### To access our AWS instance:
 
 | Instance 1: MultiSim  |  Instance 2: BM25  |
 | ------------- |:-------------:|
