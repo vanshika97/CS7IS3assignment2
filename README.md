@@ -1,4 +1,7 @@
-# Group 13- Index and search news articles
+# INFORMATION RETRIEVAL AND WEB SEARCH
+## Group 13: Index and search news articles
+
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/ayushsinghania/CS7IS3-IR-Lucene-Based-Search-Engine)
 
 A search engine built upon the News Article Collection for  **CS7IS3 INFORMATION RETRIEVAL AND WEB SEARCH**. 
 
