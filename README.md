@@ -10,12 +10,11 @@ A search engine built upon the News Article Collection for  **CS7IS3 INFORMATION
 3. Foreign Broadcast Information Service (1996): fbis ;
 4. Los Angeles Times (1989, 1990): latimes.
 
-Ran similarities    
+Ran following similarities with CustomAnalyzer
 - booleanSimilarity  
 - bm25Similarity   
 - multiSimilarity
 
-And a CustomAnalyzer
 
 ## Getting Started
 
