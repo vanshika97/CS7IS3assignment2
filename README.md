@@ -38,6 +38,7 @@ Enter password: cs7is3
 
 ```sh
 $ cd CS7IS3assignment2/
+$ mvn clean
 $ mvn package
 ```
 ### Running the code
