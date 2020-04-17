@@ -1,17 +1,16 @@
 # News Article Collection Lucene SE
 
 A search engine built upon the News Article Collection for  **"CS7IS3 INFORMATION RETRIEVAL AND WEB SEARCH CA 2**. 
-Read Report - [here] (still to do)
 
 1. Financial Times Limited (1991, 1992, 1993, 1994): ft ;
 2. Federal Register (1994): fr94 ;
 3. Foreign Broadcast Information Service (1996): fbis ;
 4. Los Angeles Times (1989, 1990): latimes.
 
-Ran similarities
-- tfidf
-- boolean
-- bm25 
+Ran similarities    
+- booleanSimilarity  
+- bm25Similarity   
+- multiSimilarity
 
 And a CustomAnalyzer
 
