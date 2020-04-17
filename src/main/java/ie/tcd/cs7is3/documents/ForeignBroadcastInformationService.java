@@ -32,8 +32,8 @@ public class ForeignBroadcastInformationService {
 
             for (Element document : documents) {
                 docno = document.select("docno").text();
-                text = document.select("text").text();
-                title = document.select("ti").text();
+                text = document.select("text").text().replaceAll("[^a-zA-Z ]", "".toLowerCase());
+                title = document.select("ti").text().replaceAll("[^a-zA-Z ]", "".toLowerCase());
                 
                 Document doc = new Document();
                 doc.add(new TextField("docnoo", docno, Field.Store.YES));

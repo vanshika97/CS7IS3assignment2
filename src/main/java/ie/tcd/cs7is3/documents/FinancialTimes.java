@@ -36,8 +36,8 @@ public class FinancialTimes {
 
                 for (Element document : documents) {
                     docno = document.select("docno").text();
-                    text = document.select("text").text();
-                    title = document.select("headline").text();
+                    text = document.select("text").text().replaceAll("[^a-zA-Z ]", "".toLowerCase());
+                    title = document.select("headline").text().replaceAll("[^a-zA-Z ]", "".toLowerCase());
                     Document doc = new Document();
                     doc.add(new TextField("docnoo", docno, Field.Store.YES));
                     doc.add(new TextField("headline", title, Field.Store.YES));

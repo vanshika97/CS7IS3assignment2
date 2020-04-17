@@ -215,9 +215,6 @@ public class Topic {
         return tops;
     }
     public static void main(String[] args) throws IOException {
-
-        // Parse command line arguments
-//        Map<String, String> values = new ParseCLA(args, "ParseTopics").parse();
         Utils utils = new Utils();
         String str = "src/topic/";
         Topic pt = new Topic();

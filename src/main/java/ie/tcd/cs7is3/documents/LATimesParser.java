@@ -29,14 +29,11 @@ public class LATimesParser {
         for (File file : listOfFiles) {
 
             Document laTimesContent = Jsoup.parse(file, null, "");
-
             Elements docs = laTimesContent.select("doc");
-
             for(Element doc: docs) {
-
                 docno = doc.select("docno").text();
-                headline = (doc.select("headline").select("P").text());
-                text = (doc.select("text").select("P").text());
+                headline = (doc.select("headline").select("P").text().replaceAll("[^a-zA-Z ]", "".toLowerCase()));
+                text = (doc.select("text").select("P").text().replaceAll("[^a-zA-Z ]", "".toLowerCase()));
                 org.apache.lucene.document.Document document = new org.apache.lucene.document.Document();
                 document.add(new TextField("docnoo", docno, Field.Store.YES));
                 document.add(new TextField("headline", headline, Field.Store.YES) );

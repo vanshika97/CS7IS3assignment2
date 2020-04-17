@@ -12,6 +12,7 @@ import org.apache.lucene.analysis.core.FlattenGraphFilter;
 import org.apache.lucene.analysis.core.StopAnalyzer;
 import org.apache.lucene.analysis.en.EnglishMinimalStemFilter;
 import org.apache.lucene.analysis.en.EnglishPossessiveFilter;
+import org.apache.lucene.analysis.en.KStemFilter;
 import org.apache.lucene.analysis.en.PorterStemFilter;
 import org.apache.lucene.analysis.miscellaneous.LengthFilter;
 import org.apache.lucene.analysis.miscellaneous.SetKeywordMarkerFilter;
@@ -37,7 +38,7 @@ public class CustomAnalyser extends StopwordAnalyzerBase {
         TokenStream tokenStream = new LowerCaseFilter(source);
         tokenStream = new EnglishPossessiveFilter(tokenStream);
         tokenStream = new EnglishMinimalStemFilter(tokenStream);
-//        tokenStream = new KStemFilter(tokenStream);
+        tokenStream = new KStemFilter(tokenStream);
         tokenStream = new PorterStemFilter(tokenStream);
         String[] stop_words = getEnglishStopWordList();
 //        TokenStream stopSet = StopFilter.makeStopSet(stop_words, true);

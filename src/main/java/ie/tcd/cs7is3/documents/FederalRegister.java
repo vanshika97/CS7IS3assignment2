@@ -31,15 +31,19 @@ public class FederalRegister {
             for (File file : files) {
                 org.jsoup.nodes.Document d = Jsoup.parse(file, null, "");
                 Elements documents = d.select("doc");
-                for (Element document : documents) {
-                    docno = document.select("docno").text();
-                    text = document.select("text").text();
-                    title = document.select("doctitle").text();
-                    Document doc = new Document();
-                    doc.add(new TextField("docnoo", docno, Field.Store.YES));
-                    doc.add(new TextField("text", text, Field.Store.YES));
-                    doc.add(new TextField("headline", title, Field.Store.YES));
-                    iw.addDocument(doc);
+                for (Element doc : documents) {
+                	title = doc.select("doctitle").text().replaceAll("[^a-zA-Z ]", "".toLowerCase());
+                    
+                    docno = doc.select("docno").text();
+                    text = doc.select("text").text().replaceAll("[^a-zA-Z ]", "".toLowerCase());
+                    if(text.contains("\n"))
+                    	text = text.replaceAll("\n","").trim();
+                    
+                    Document document = new Document();
+                    document.add(new TextField("docnoo", docno, Field.Store.YES));
+                    document.add(new TextField("text", text, Field.Store.YES));
+                    document.add(new TextField("headline", title, Field.Store.YES));
+                    iw.addDocument(document); 
                 }
             }
         }

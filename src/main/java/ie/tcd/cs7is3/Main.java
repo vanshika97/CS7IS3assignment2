@@ -1,10 +1,7 @@
 package ie.tcd.cs7is3;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.CharArraySet;
-import org.apache.lucene.analysis.custom.CustomAnalyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
-import org.apache.lucene.analysis.standard.ClassicAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.search.similarities.BooleanSimilarity;
@@ -15,7 +12,6 @@ import org.apache.lucene.search.similarities.Similarity;
 import ie.tcd.cs7is3.documents.Topic;
 
 import java.io.File;
-import java.util.Arrays;
 
 public class Main {
 
@@ -25,7 +21,7 @@ public class Main {
         Similarity bm25Similairty= new BM25Similarity();
         Similarity booleanSimilarity = new BooleanSimilarity();
         Similarity tfidfSimilarity = new ClassicSimilarity();
-        Similarity multiSimilarity =  new MultiSimilarity(new Similarity[] { new ClassicSimilarity(), new BM25Similarity() });
+        Similarity multiSimilarity =  new MultiSimilarity(new Similarity[] {tfidfSimilarity, bm25Similairty});
         
 
         //Different Analyzers to Test
@@ -72,7 +68,7 @@ public class Main {
         }
 
         Topic.main(null);
-        Indexer.buildDocsIndex(english, multiSimilarity);
-        Searcher.main(english, multiSimilarity);
+        Indexer.buildDocsIndex(custom, multiSimilarity);
+        Searcher.main(custom, multiSimilarity);
     }
 }

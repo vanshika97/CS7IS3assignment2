@@ -33,25 +33,6 @@ import org.json.simple.parser.JSONParser;
 public class Searcher {
 
     private static final int HITS_PER_PAGE = 1000;
-    private static final String[] allElements = {"date", "dateline", "in", "profile", "cn", "docno", "co", "pe",
-            "text", "page", "tp", "pub", "headline", "byline",
-            "usdept", "agency", "usbureau", "doctitle", "summary", "supplem", "other",
-            "ht", "au", "f",
-            "paragraph"};
-
-    /**
-     * Create query from topic
-     * @param top the topic JSON to create query from
-     * @return the query string created from the topic JSON
-     */
-    private static String createQuery(JSONObject top) {
-
-        // Concatenate the four elements
-        String queryStr = (String) top.get("num") + " " + (String) top.get("title") + " "
-                + (String) top.get("desc") + " " + (String) top.get("narr");
-
-        return queryStr;
-    }
 
     public static void main(Analyzer analyzer, Similarity similarity) throws IOException, ParseException {
     	
@@ -112,7 +93,7 @@ public class Searcher {
 
             JSONObject top = (JSONObject) obj;
 
-            String queryStr = createQuery(top);
+            String queryStr = top.get("title") + " " + top.get("title") + " " + top.get("title") + top.get("desc") + " " + top.get("desc") + " " + top.get("narr");
             queryFileContent.add(queryStr);
 
             queryStr = queryStr.replace("/", "\\/");
