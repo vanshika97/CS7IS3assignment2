@@ -1,6 +1,6 @@
-# News Article Collection Lucene SE
+# Group 13- Index and search news articles
 
-A search engine built upon the News Article Collection for  **"CS7IS3 INFORMATION RETRIEVAL AND WEB SEARCH CA 2**. 
+A search engine built upon the News Article Collection for  **CS7IS3 INFORMATION RETRIEVAL AND WEB SEARCH**. 
 
 1. Financial Times Limited (1991, 1992, 1993, 1994): ft ;
 2. Federal Register (1994): fr94 ;
