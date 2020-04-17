@@ -15,59 +15,44 @@ Ran similarities
 
 And a CustomAnalyzer
 
-# Running Project
-Grant Permission to bash script to automatically unzip trec_eval.zip, build java lucene project, and trecEval 
+## Getting Started
+
+- Run the following commands on ubuntu terminal or an windows via cmd as adminstrator
+
+### Login Credentials (if required in any of the following steps):
+
+```sh
+$ Username           : cs7is3 
+$ Password           : cs7is3
+$ Instance IP Address: ec2-54-165-243-242.compute-1.amazonaws.com
+
+``` 
+
+**To enter the system**
+
+```sh
+$ ssh cs7is3ec2-54-165-243-242.compute-1.amazonaws.com
+Enter password: cs7is3
 ```
-git clone https://github.com/QUzair/LuceneSE.git
+### Building the code
 
-chmod u+x trecEval.sh
+```sh
+$ cd CS7IS3assignment2/
+$ mvn package
+```
+### Running the code
 
-./trecEval.sh
+```sh
+$ java -jar 
+```
+### Evaluationg the results
+
+```sh
+$ cd src/trec_eval-9.0.7/
+$ make
+$ ./trec_eval 
 ```
 
-
-# Files In Project
-
-Main Classes:
-- News Model
-	> Basic model for field in cranfield doc (id,title,author,biblio,content)
-- Main
-	> Main class which indexes and searches with different analyzers and similarity classes
-	
-Within Collections folder:
-- fr94 - federal registry
-	> Contains 1400 documents from the Cranfield Collection.
-	
- Output/Other files:
-- trecEval.sh
-	> Bash Script to unzip and make trec_eval.zip, build java lucene project, and run trecEval on the outputted similarityFiles (contains 'DocRanks') and QRelsCorrectedforTRECeval
-- stopWords.txt
-	> List of stopwords taken from [https://www.ranks.nl/stopwords](https://www.ranks.nl/stopwords) 
-
-
-## Custom Analyzer
-
-Basic Custom analyzer with  stopwords taken from [https://www.ranks.nl/stopwords](https://www.ranks.nl/stopwords) 
-```java
-//Creating New Token Stream  
-TokenStream tokenStream = new LowerCaseFilter(source);  
-  
-//Adding Filters  
-tokenStream = new EnglishPossessiveFilter(tokenStream);  
-tokenStream = new PorterStemFilter(tokenStream);  
-tokenStream = new EnglishMinimalStemFilter(tokenStream);  
-tokenStream = new KStemFilter(tokenStream);  
-  
-  
-CharArraySet newStopSet = null;  
-try {  
-    newStopSet = StopFilter.makeStopSet(getStopWords()); //Set of Words from ranks.nl/stopwords
-} catch (IOException e) {  
-    e.printStackTrace();  
-}  
-tokenStream = new StopFilter(tokenStream, newStopSet);  
-return new TokenStreamComponents(source, tokenStream);
-```
 # Results
 
 |                |StandardAnalyzer                          |CustomAnalyzer                         |
