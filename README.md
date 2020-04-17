@@ -19,21 +19,13 @@ And a CustomAnalyzer
 
 - Run the following commands on ubuntu terminal or an windows via cmd as adminstrator
 
-### Login Credentials (if required in any of the following steps):
-
-```sh
-$ Username           : cs7is3 
-$ Password           : cs7is3
-$ Instance IP Address: ec2-54-165-243-242.compute-1.amazonaws.com
-
-``` 
-
 **To enter the system**
 
-```sh
-$ ssh cs7is3@ec2-54-165-243-242.compute-1.amazonaws.com
-Enter password: cs7is3
-```
+| Instance 1: MultiSim  |  Instance 2: BM25  |
+| ------------- |:-------------:|
+| $ ssh cs7is3@ec2-54-165-243-242.compute-1.amazonaws.com  | $ ssh vanshika@ec2-3-94-92-198.compute-1.amazonaws.com |
+| Enter password: cs7is3  | Enter password:  vanshika  |
+
 ### Building the code
 
 ```sh
