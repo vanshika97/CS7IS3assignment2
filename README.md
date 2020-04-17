@@ -1,7 +1,7 @@
 # INFORMATION RETRIEVAL AND WEB SEARCH
 ## Group 13: Index and search news articles (Assignment 2)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/ayushsinghania/CS7IS3-IR-Lucene-Based-Search-Engine)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/vanshika97/CS7IS3assignment2)
 
 A search engine built upon the News Article Collection for  **CS7IS3 INFORMATION RETRIEVAL AND WEB SEARCH**. 
 
