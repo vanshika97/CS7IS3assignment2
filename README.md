@@ -43,14 +43,14 @@ $ mvn package
 ### Running the code
 
 ```sh
-$ java -jar 
+$ java -jar target/NewsSearchEngine-1.0-SNAPSHOT.jar
 ```
 ### Evaluationg the results
 
 ```sh
 $ cd src/trec_eval-9.0.7/
 $ make
-$ ./trec_eval 
+$ ./trec_eval ../qrels ../search_results.txt 
 ```
 
 # Results
