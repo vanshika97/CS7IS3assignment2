@@ -56,12 +56,11 @@ $ ./trec_eval ../qrels ../search_results.txt
 
 # Results
 
-|                |StandardAnalyzer                          |CustomAnalyzer                         |
+|                |EnglishAnalyzer                          |CustomAnalyzer                         |
 |----------------|-------------------------------|-----------------------------|
-|tfidf|-            | -           |
-|boolean          | -            | -           |
-|bm25          |-|0.3220|  
-|Multi          |0.2864|0.3190|
+|boolean          | 0.0573            | 0.090          |
+|bm25          |0.3140|**0.3220**|  
+|Multi          |0.3040|0.3190|
 
 
 As can be seen bm25 provides the best results along with the CustomAnalyzer.
