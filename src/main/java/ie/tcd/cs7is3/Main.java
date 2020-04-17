@@ -46,7 +46,7 @@ public class Main {
         File directory_final_Queries = new File(FinalQueries);
         String[] delFiles_fq;
         if(directory_final_Queries.isDirectory()){
-            System.out.println("Deleting Final Queris");
+            System.out.println("Deleting Final Queries");
             delFiles_fq = directory_final_Queries.list();
             for (int i=0; i<delFiles_fq.length; i++) {
                 File my = new File(directory_final_Queries, delFiles_fq[i]);
@@ -68,7 +68,7 @@ public class Main {
         }
 
         Topic.main(null);
-        Indexer.buildDocsIndex(custom, multiSimilarity);
-        Searcher.main(custom, multiSimilarity);
+        Indexer.buildDocsIndex(custom, bm25Similairty);
+        Searcher.main(custom,bm25Similairty);
     }
 }
