@@ -46,7 +46,7 @@ $ make
 $ ./trec_eval ../qrels ../search_results.txt 
 ```
 
-# Results
+## Results
 
 |                |EnglishAnalyzer                          |CustomAnalyzer                         |
 |----------------|-------------------------------|-----------------------------|
