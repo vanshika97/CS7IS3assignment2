@@ -38,28 +38,30 @@ Enter password: cs7is3
 
 ```sh
 $ cd CS7IS3assignment2/
+$ mvn clean
 $ mvn package
 ```
 ### Running the code
 
 ```sh
-$ java -jar 
+$ java -jar target/NewsSearchEngine-1.0-SNAPSHOT.jar
 ```
 ### Evaluationg the results
 
 ```sh
 $ cd src/trec_eval-9.0.7/
 $ make
-$ ./trec_eval 
+$ ./trec_eval ../qrels ../search_results.txt 
 ```
 
 # Results
 
 |                |StandardAnalyzer                          |CustomAnalyzer                         |
 |----------------|-------------------------------|-----------------------------|
-|tfidf|0.1557            | 0.2796           |
-|boolean          | 0.1782            | 0.2781            |
-|bm25          |0.2864|0.3375|
+|tfidf|-            | -           |
+|boolean          | -            | -           |
+|bm25          |-|-|  
+|Multi          |0.2864|0.3190|
 
 
 As can be seen bm25 provides the best results along with the CustomAnalyzer.
